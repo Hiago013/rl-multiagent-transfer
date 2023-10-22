@@ -390,9 +390,8 @@ class multi_agent():
 def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
     k = 0
     v = 0
+    agent.load('qtable.txt')
     if tl == 1:
-        agent.load('qtable.txt') 
-
         # Transfer to reach all drop locations on the 2nd floor
         # Stage 1
         train_states = dict()
@@ -413,11 +412,7 @@ def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
             for state in train_states[key]:
                 agent = transfer_learning.from_to(agent, state=key, state_=state)
 
-
-
     if tl == 2:
-        agent.load('qtable.txt') 
-
         # Transfer to reach nearby drop locations on the 1st floor
         # Stage 1
         train_states = dict()
@@ -440,8 +435,6 @@ def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
 
 
     if tl == 3:
-        agent.load('qtable.txt') 
-
         # Transfer to reach all states of all bays on both floors
         # Stage 1
         train_states = dict()
@@ -462,8 +455,6 @@ def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
                 agent = transfer_learning.from_to(agent, state=key, state_=state, default=.9)
     
     if tl == 4:
-        agent.load('qtable.txt') 
-
         # Transfer to facilitate learning to reach all bays
         # Stage 1
         train_states = dict()
@@ -484,8 +475,6 @@ def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
                 agent = transfer_learning.from_to_reverse(agent, state=key, state_=state)
 
     if tl == 5:
-        agent.load('qtable.txt') 
-
         # Transfer to reach the central bay
         # Stage 1
         train_states = dict()
@@ -507,8 +496,6 @@ def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
                 agent = transfer_learning.from_to(agent, state=key, state_=state, default=.5)
         
     if tl == 6:
-        agent.load('qtable.txt')
-
         # Transfer to reach any bay
         # Stage 1
         train_states = dict()
@@ -529,8 +516,6 @@ def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
                 agent = transfer_learning.from_to(agent, state=key, state_=state)
 
     if tl == 7:
-        agent.load('qtable.txt')
-
         # Transfer to reach the central bay
         # Stage 1
         train_states = dict()
@@ -552,8 +537,6 @@ def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
                 agent = transfer_learning.from_to(agent, state=key, state_=state)
 
     if tl == 8:
-        agent.load('qtable.txt')
-
         # Transfer to reach the central bay
         # Stage 1
         train_states = dict()
@@ -575,8 +558,6 @@ def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
                 agent = transfer_learning.from_to(agent, state=key, state_=state)
 
     if tl == 9:
-        agent.load('qtable.txt')
-
         # Transfer to reach the central bay with different dynamic and flag values
         # Stage 1
         train_states = dict()
@@ -597,3 +578,5 @@ def transfer_learning_kevin(env : GridWorld, agent:brain, tl = 1):
         for key in train_states.keys():
             for state in train_states[key]:
                 agent = transfer_learning.from_to(agent, state=key, state_=state)
+
+    agent.save('qtable.txt')
