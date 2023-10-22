@@ -128,7 +128,7 @@ control_trainning = {
 
 # Main loop for training stages
 init = time.time()
-for all_estagios in range(0, 42):
+for all_estagios in range(0, 43):
     print('\n', all_estagios)
     env.set_stage(1)
 
@@ -235,6 +235,7 @@ for all_estagios in range(0, 42):
         # Configuration for stage 24
         env.set_stage(0)
         transfer_learning_kevin(env, agent, 3)
+        transfer_learning_kevin(env, agent, 4)
         ma.load('qtable.txt')
         att_obstaculos(FECHAMENTOS[0][all_estagios % 6])
         
@@ -385,4 +386,7 @@ for all_estagios in range(0, 42):
     
     end = time.time() - init
     ma.save('qtable')
+    plt.figure()
+    plt.plot(reward_sum[0])
+    plt.savefig(f'graph{all_estagios}.png', dpi=600)
     plt.close()
