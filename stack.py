@@ -26,6 +26,16 @@ class Stack:
             return self.top.data
         raise IndexError("The stack is empty")
 
+    def get_all(self):
+        # retorna todos os elementos da pilha
+        r = []
+        pointer = self.top
+        while(pointer):
+            r.append(pointer.data)
+            pointer = pointer.next
+        return r
+
+
 
     def __len__(self):
         """Retorna o tamanho da lista"""

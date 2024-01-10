@@ -128,7 +128,7 @@ control_trainning = {
 
 # Main loop for training stages
 init = time.time()
-for all_estagios in range(0, 43):
+for all_estagios in range(0, 42):
     print('\n', all_estagios)
     env.set_stage(1)
 
@@ -143,12 +143,12 @@ for all_estagios in range(0, 43):
         agent.epsilon = control_trainning[0]['epsilon']
         env.set_progressive_curriculum(all_estagios)
         ma.set_ep(.1, 1 - all_estagios/10, max_ep)
-    
+
     elif all_estagios == 6:
         # Transfer learning from Kevin's model for stage 6
         transfer_learning_kevin(env, agent, 1)
         ma.load('qtable.txt')
-        
+
         # Updates available position that the agent can move
         att_obstaculos(FECHAMENTOS[1][2])
 
@@ -167,7 +167,7 @@ for all_estagios in range(0, 43):
             att_obstaculos(FECHAMENTOS[1][2])
         else:
             att_obstaculos(FECHAMENTOS[1][all_estagios % 6])
-        
+
         # Set parameters
         n_epoch = control_trainning[0]['retrain'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -184,7 +184,7 @@ for all_estagios in range(0, 43):
             att_obstaculos(FECHAMENTOS[0][1])
         else:
             att_obstaculos(FECHAMENTOS[0][all_estagios % 6])
-        
+
         # Set parameters
         n_epoch = control_trainning[0]['epoch'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -194,16 +194,16 @@ for all_estagios in range(0, 43):
         agent.epsilon = control_trainning[0]['epsilon']
         env.set_progressive_curriculum(all_estagios)
         ma.set_ep(.1, 1 - (all_estagios % 6)/10, max_ep) #np.log10(10-all_estagios)
-    
+
 
     elif all_estagios == 18:
         # Transfer learning from Kevin's model for a different scenario at stage 18
         transfer_learning_kevin(env, agent, 2)
         ma.load('qtable.txt')
-        
+
         # Updates available position that the agent can move
         att_obstaculos(FECHAMENTOS[0][2])
-        
+
         # Set other parameters
         n_epoch = control_trainning[0]['retrain'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -220,7 +220,7 @@ for all_estagios in range(0, 43):
             att_obstaculos(FECHAMENTOS[0][2])
         else:
             att_obstaculos(FECHAMENTOS[0][all_estagios % 6])
-        
+
         # Set other parameters as in previous sections...
         n_epoch = control_trainning[0]['retrain'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -238,7 +238,7 @@ for all_estagios in range(0, 43):
         transfer_learning_kevin(env, agent, 4)
         ma.load('qtable.txt')
         att_obstaculos(FECHAMENTOS[0][all_estagios % 6])
-        
+
         # Set other parameters as in previous sections...
         n_epoch = control_trainning[0]['epoch'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -247,13 +247,13 @@ for all_estagios in range(0, 43):
         max_ep = fmax_ep(n_epoch)
         agent.epsilon = control_trainning[0]['epsilon']
         env.set_progressive_curriculum(all_estagios % 6 )
-        ma.set_ep(.1, 1 - (all_estagios % 6) / 10, max_ep) 
+        ma.set_ep(.1, 1 - (all_estagios % 6) / 10, max_ep)
 
     elif all_estagios > 24 and all_estagios < 30:
         # Configuration for stages 25 to 29
         env.set_stage(0)
         att_obstaculos(FECHAMENTOS[0][all_estagios % 6])
-        
+
         # Set other parameters
         n_epoch = control_trainning[0]['epoch'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -262,7 +262,7 @@ for all_estagios in range(0, 43):
         max_ep = fmax_ep(n_epoch)
         agent.epsilon = control_trainning[0]['epsilon']
         env.set_progressive_curriculum(all_estagios % 6)
-        ma.set_ep(.1, 1 - (all_estagios % 6) / 10, max_ep) 
+        ma.set_ep(.1, 1 - (all_estagios % 6) / 10, max_ep)
 
     elif all_estagios == 30:
         # Configuration for stage 30
@@ -270,7 +270,7 @@ for all_estagios in range(0, 43):
         transfer_learning_kevin(env, agent, 5)
         ma.load('qtable')
         att_obstaculos(FECHAMENTOS[0][all_estagios % 6])
-        
+
         # Set parameters
         n_epoch = control_trainning[0]['retrain'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -279,13 +279,13 @@ for all_estagios in range(0, 43):
         max_ep = fmax_ep(n_epoch)
         agent.epsilon = control_trainning[0]['epsilon']
         env.set_progressive_curriculum(all_estagios % 12)
-        ma.set_ep(.1, 1 - (all_estagios % 6) / 10, max_ep) 
+        ma.set_ep(.1, 1 - (all_estagios % 6) / 10, max_ep)
 
     elif all_estagios > 30 and all_estagios < 36:
         # Configuration for stages 31 to 35
         env.set_stage(0)
         att_obstaculos(FECHAMENTOS[0][all_estagios % 6])
-        
+
         # Set other parameters as in previous sections...
         n_epoch = control_trainning[0]['retrain'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -303,7 +303,7 @@ for all_estagios in range(0, 43):
         transfer_learning_kevin(env, agent, 7)
         ma.load('qtable')
         att_obstaculos(FECHAMENTOS[0][all_estagios % 6])
-        
+
         # Set other parameters as in previous sections...
         n_epoch = control_trainning[0]['retrain'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -318,7 +318,7 @@ for all_estagios in range(0, 43):
         # Configuration for stages 37 to 41
         env.set_stage(2)
         att_obstaculos(FECHAMENTOS[0][all_estagios % 6])
-        
+
         # Set other parameters as in previous sections...
         n_epoch = control_trainning[0]['retrain'][all_estagios % 6]
         n_books = control_trainning[0]['n_books']
@@ -338,7 +338,7 @@ for all_estagios in range(0, 43):
         ma.save('qtable')
         env.set_stage(3)
         n_epoch = 5000
-        n_books = 2 
+        n_books = 2
         n_agents = 2
         fmax_ep = control_trainning[0]['max_ep']
         max_ep = fmax_ep(n_epoch)
@@ -383,7 +383,7 @@ for all_estagios in range(0, 43):
             reward_sum[0][epoch] += reward[0]
             #visualizar()
         print(epoch, end='\r')
-    
+
     end = time.time() - init
     ma.save('qtable')
     plt.figure()
